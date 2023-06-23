@@ -7,9 +7,9 @@ import (
 
 type UserUseCase interface {
 	FindAll(ctx *fasthttp.RequestCtx) ([]domain.User, error)
-	FindByID(ctx *fasthttp.RequestCtx, id uint) (domain.User, error)
+	FindByID(ctx *fasthttp.RequestCtx, id string) (domain.User, error)
 	Create(ctx *fasthttp.RequestCtx, user domain.User) (domain.User, error)
 	Delete(ctx *fasthttp.RequestCtx, user domain.User) error
-	UpdateByID(ctx *fasthttp.RequestCtx, id uint, user domain.User) (domain.User, error)
+	UpdateByID(ctx *fasthttp.RequestCtx, id string, user domain.User) (domain.User, error)
 	GetMatchName(ctx *fasthttp.RequestCtx, text string) ([]domain.User, error)
 }

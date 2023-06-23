@@ -5,6 +5,7 @@ import (
 
 	domain "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/domain"
 	iRepository "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/repository/interfaces"
+	EUsecase "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/usecase/error"
 	iUsecase "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/usecase/interfaces"
 	"github.com/valyala/fasthttp"
 )
@@ -21,13 +22,16 @@ func NewUserUseCase(repo iRepository.UserRepository) iUsecase.UserUseCase {
 
 func (c *userUseCase) FindAll(ctx *fasthttp.RequestCtx) ([]domain.User, error) {
 	users, err := c.userRepo.FindAll(ctx)
+	if err == nil && len(users) == 0 {
+		return users, EUsecase.NewErrorNotFound(errors.New("users not found"))
+	}
 	return users, err
 }
 
-func (c *userUseCase) FindByID(ctx *fasthttp.RequestCtx, id uint) (domain.User, error) {
+func (c *userUseCase) FindByID(ctx *fasthttp.RequestCtx, id string) (domain.User, error) {
 	user, err := c.userRepo.FindByID(ctx, id)
 	if err == nil && user == (domain.User{}) {
-		return user, errors.New("user is not create yet")
+		return user, errors.New("users not found")
 	}
 
 	return user, err
@@ -45,7 +49,7 @@ func (c *userUseCase) Delete(ctx *fasthttp.RequestCtx, user domain.User) error {
 	return err
 }
 
-func (c *userUseCase) UpdateByID(ctx *fasthttp.RequestCtx, id uint, user domain.User) (domain.User, error) {
+func (c *userUseCase) UpdateByID(ctx *fasthttp.RequestCtx, id string, user domain.User) (domain.User, error) {
 	user, err := c.userRepo.UpdateByID(ctx, id, user)
 
 	return user, err

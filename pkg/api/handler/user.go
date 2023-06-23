@@ -1,12 +1,10 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
-	"strconv"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/jinzhu/copier"
+	"github.com/google/uuid"
 
 	domain "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/domain"
 	iUsecase "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/usecase/interfaces"
@@ -28,57 +26,40 @@ func (h *UserHandler) FindAll(c *fiber.Ctx) error {
 	if err != nil {
 		return err
 	} else {
-		var response []UserResponse
-		copier.Copy(&response, &users)
-
-		return c.JSON(response)
+		return c.JSON(NewUsesrResponse(users))
 	}
 }
 
 func (h *UserHandler) FindByID(c *fiber.Ctx) error {
 	paramsId := c.Params("id")
-	id, err := strconv.Atoi(paramsId)
-	if err != nil {
-		return err
-	}
 
-	users, err := h.userUseCase.FindByID(c.Context(), uint(id))
+	user, err := h.userUseCase.FindByID(c.Context(), paramsId)
 	if err != nil {
 		return err
 	} else {
-		var response UserResponse
-		copier.Copy(&response, &users)
-
-		return c.JSON(response)
+		return c.JSON(NewUserResponse(user))
 	}
 }
 
 func (h *UserHandler) Create(c *fiber.Ctx) error {
-	var user domain.User
+	var request UserRequest
 
-	if err := c.BodyParser(&user); err != nil {
+	if err := c.BodyParser(&request); err != nil {
 		return err
 	}
 
-	user, err := h.userUseCase.Create(c.Context(), user)
+	userData := domain.NewUser(uuid.New(), request.Name, request.Email)
+	user, err := h.userUseCase.Create(c.Context(), userData)
 	if err != nil {
 		return err
 	} else {
-		response := UserResponse{}
-		copier.Copy(&response, &user)
-
-		return c.JSON(response)
+		return c.JSON(NewUserResponse(user))
 	}
 }
 
 func (h *UserHandler) Delete(c *fiber.Ctx) error {
 	paramsId := c.Params("id")
-	id, err := strconv.Atoi(paramsId)
-	if err != nil {
-		return err
-	}
-
-	user, err := h.userUseCase.FindByID(c.Context(), uint(id))
+	user, err := h.userUseCase.FindByID(c.Context(), paramsId)
 	if err != nil {
 		return err
 	}
@@ -92,32 +73,26 @@ func (h *UserHandler) Delete(c *fiber.Ctx) error {
 }
 
 func (h *UserHandler) Update(c *fiber.Ctx) error {
-	var user domain.User
+	var request UserRequest
 
 	paramsId := c.Params("id")
-	id, err := strconv.Atoi(paramsId)
+
+	if err := c.BodyParser(&request); err != nil {
+		return err
+	}
+
+	_, err := h.userUseCase.FindByID(c.Context(), paramsId)
 	if err != nil {
 		return err
 	}
 
-	if err := c.BodyParser(&user); err != nil {
-		return err
-	}
+	userData := domain.NewUser(uuid.MustParse(paramsId), request.Name, request.Email)
 
-	_, err = h.userUseCase.FindByID(c.Context(), uint(id))
-	if err != nil {
-		return err
-	}
-
-	user, err = h.userUseCase.UpdateByID(c.Context(), uint(id), user)
-	fmt.Printf("%%v: %v\n", user)
+	user, err := h.userUseCase.UpdateByID(c.Context(), paramsId, userData)
 	if err != nil {
 		return err
 	} else {
-		response := UserResponse{}
-		copier.Copy(&response, &user)
-
-		return c.JSON(response)
+		return c.JSON(NewUserResponse(user))
 	}
 }
 
@@ -128,9 +103,6 @@ func (h *UserHandler) FindByMatchName(c *fiber.Ctx) error {
 	if err != nil {
 		return err
 	} else {
-		var response []UserResponse
-		copier.Copy(&response, &users)
-
-		return c.JSON(response)
+		return c.JSON(NewUsesrResponse(users))
 	}
 }
