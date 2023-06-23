@@ -12,6 +12,7 @@ import (
 	handlerError "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/api/handler/error"
 )
 
+var ErrToken = errors.New("not found token")
 var ErrAuthentication = errors.New("unable to successfully authenticate your request")
 
 type Authentication struct {
@@ -22,14 +23,21 @@ func NewAuthentication() *Authentication {
 }
 
 func validateToken(tokenString string) error {
-	token, _ := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-		println("hree")
+	if tokenString == "" {
+		return handlerError.NewErrorAuthentication(ErrToken)
+	}
+
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 		}
 
 		return []byte("secret"), nil
 	})
+
+	if err != nil {
+		return handlerError.NewErrorAuthentication(err)
+	}
 
 	if _, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		return nil

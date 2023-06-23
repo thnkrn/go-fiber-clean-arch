@@ -59,8 +59,7 @@ func NewServerHTTP(middlewares *Middlewares, handlers Handlers, cfg config.Confi
 
 	app.Get("/login", middleware.LoginHandler)
 
-	userAPI := app.Group("/api")
-	// userAPI := app.Group("/api", middlewares.Authentication.Authentication())
+	userAPI := app.Group("/api", middlewares.Authentication.Authentication())
 	userAPI.Get("users", handlers.UserHandler.FindAll)
 	userAPI.Get("users/:id<minLen(1)>", handlers.UserHandler.FindByID)
 	userAPI.Post("users", handlers.UserHandler.Create)
