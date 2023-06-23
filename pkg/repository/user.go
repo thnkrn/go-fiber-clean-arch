@@ -87,7 +87,7 @@ func (c *userDatabase) GetMatchName(ctx *fasthttp.RequestCtx, text string) ([]do
 	var pUsers []User
 
 	name := "%" + text + "%"
-	tx := c.DB.Where("name LIKE ?", name).Find(pUsers)
+	tx := c.DB.Where("name LIKE ?", name).Find(&pUsers)
 
 	users := make([]domain.User, len(pUsers))
 	for i, v := range pUsers {
