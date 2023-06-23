@@ -15,6 +15,7 @@ type User struct {
 	ID    uuid.UUID `gorm:"type:UUID;primaryKey"`
 	Name  string    `gorm:"not null"`
 	Email string    `gorm:"not null"`
+	VersionModel
 }
 
 func NewUser(u domain.User) User {
@@ -26,6 +27,8 @@ func NewUser(u domain.User) User {
 
 func (u *User) ToUser() domain.User {
 	model := domain.NewUser(u.ID, u.Name, u.Email)
+	model.SetVersion(u.Versioning)
+
 	return model
 }
 
@@ -73,12 +76,18 @@ func (c *userDatabase) Delete(ctx *fasthttp.RequestCtx, user domain.User) error 
 func (c *userDatabase) UpdateByID(ctx *fasthttp.RequestCtx, id string, user domain.User) (domain.User, error) {
 	pUser := NewUser(user)
 
-	tx := c.DB.Model(&user).Where("id = ?", id).Updates(pUser)
-	if tx.Error != nil {
-		return user, tx.Error
+	// NOTE: without optimistic lock
+	// tx := c.DB.Model(&user).Where("id = ?", id).Updates(pUser)
+	// if tx.Error != nil {
+	// 	return user, tx.Error
+	// }
+
+	err := UpdateWithLock(c.DB, &pUser)
+	if err != nil {
+		return pUser.ToUser(), err
 	}
 
-	tx = c.DB.Where("id = ?", id).Find(&pUser)
+	tx := c.DB.Where("id = ?", id).Find(&pUser)
 
 	return pUser.ToUser(), tx.Error
 }
