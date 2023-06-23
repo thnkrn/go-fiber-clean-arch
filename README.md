@@ -59,6 +59,7 @@ test-coverage                  Run tests and generate coverage file
 deps                           Install dependencies
 deps-cleancache                Clear cache in Go module
 wire                           Generate wire_gen.go
+mockery                        Generate mock file
 help                           Display this help screen
 ```
 
