@@ -35,3 +35,6 @@ deps-cleancache: ## Clear cache in Go module
 
 wire: ## Generate wire_gen.go
 	cd pkg/di && wire
+
+help: ## Display this help screen
+	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
