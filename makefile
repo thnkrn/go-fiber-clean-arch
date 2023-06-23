@@ -36,5 +36,12 @@ deps-cleancache: ## Clear cache in Go module
 wire: ## Generate wire_gen.go
 	cd pkg/di && wire
 
+mockery: ## Generate mock package for testing
+	cd pkg/usecase && mockery --all --output=../mocks/usecase --case underscore
+	cd ../../
+	cd pkg/repository && mockery --all --output=../mocks/repository --case underscore
+	cd ../../
+	cd pkg/driver/log && mockery --all --output=../../mocks/driver/log --case underscore
+
 help: ## Display this help screen
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
