@@ -21,9 +21,6 @@ build/bin/
 # Go workspace file
 go.work
 
-# Environment file
-.env
-
 # REST Client file
 *.http
 
