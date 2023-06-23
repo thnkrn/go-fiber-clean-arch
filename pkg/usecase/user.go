@@ -5,7 +5,7 @@ import (
 
 	domain "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/domain"
 	iRepository "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/repository/interfaces"
-	EUsecase "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/usecase/error"
+	eUsecase "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/usecase/error"
 	iUsecase "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/usecase/interfaces"
 	"github.com/valyala/fasthttp"
 )
@@ -23,7 +23,7 @@ func NewUserUseCase(repo iRepository.UserRepository) iUsecase.UserUseCase {
 func (c *userUseCase) FindAll(ctx *fasthttp.RequestCtx) ([]domain.User, error) {
 	users, err := c.userRepo.FindAll(ctx)
 	if err == nil && len(users) == 0 {
-		return users, EUsecase.NewErrorNotFound(errors.New("users not found"))
+		return users, eUsecase.NewErrorNotFound(errors.New("users not found"))
 	}
 	return users, err
 }
