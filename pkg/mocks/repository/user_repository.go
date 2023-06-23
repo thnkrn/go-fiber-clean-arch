@@ -79,21 +79,21 @@ func (_m *UserRepository) FindAll(ctx *fasthttp.RequestCtx) ([]domain.User, erro
 }
 
 // FindByID provides a mock function with given fields: ctx, id
-func (_m *UserRepository) FindByID(ctx *fasthttp.RequestCtx, id uint) (domain.User, error) {
+func (_m *UserRepository) FindByID(ctx *fasthttp.RequestCtx, id string) (domain.User, error) {
 	ret := _m.Called(ctx, id)
 
 	var r0 domain.User
 	var r1 error
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, uint) (domain.User, error)); ok {
+	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, string) (domain.User, error)); ok {
 		return rf(ctx, id)
 	}
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, uint) domain.User); ok {
+	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, string) domain.User); ok {
 		r0 = rf(ctx, id)
 	} else {
 		r0 = ret.Get(0).(domain.User)
 	}
 
-	if rf, ok := ret.Get(1).(func(*fasthttp.RequestCtx, uint) error); ok {
+	if rf, ok := ret.Get(1).(func(*fasthttp.RequestCtx, string) error); ok {
 		r1 = rf(ctx, id)
 	} else {
 		r1 = ret.Error(1)
@@ -129,21 +129,21 @@ func (_m *UserRepository) GetMatchName(ctx *fasthttp.RequestCtx, text string) ([
 }
 
 // UpdateByID provides a mock function with given fields: ctx, id, user
-func (_m *UserRepository) UpdateByID(ctx *fasthttp.RequestCtx, id uint, user domain.User) (domain.User, error) {
+func (_m *UserRepository) UpdateByID(ctx *fasthttp.RequestCtx, id string, user domain.User) (domain.User, error) {
 	ret := _m.Called(ctx, id, user)
 
 	var r0 domain.User
 	var r1 error
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, uint, domain.User) (domain.User, error)); ok {
+	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, string, domain.User) (domain.User, error)); ok {
 		return rf(ctx, id, user)
 	}
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, uint, domain.User) domain.User); ok {
+	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, string, domain.User) domain.User); ok {
 		r0 = rf(ctx, id, user)
 	} else {
 		r0 = ret.Get(0).(domain.User)
 	}
 
-	if rf, ok := ret.Get(1).(func(*fasthttp.RequestCtx, uint, domain.User) error); ok {
+	if rf, ok := ret.Get(1).(func(*fasthttp.RequestCtx, string, domain.User) error); ok {
 		r1 = rf(ctx, id, user)
 	} else {
 		r1 = ret.Error(1)
