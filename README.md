@@ -1,6 +1,6 @@
 # go-fiber-crud-clean-arch
 
-Golang REST API service using Fiber framework and GORM with ProstgresSQL database by applying clean architecture and dependency injection by Wire
+Golang REST API service using Fiber framework and GORM with PostgresSQL database by applying clean architecture and dependency injection by Wire
 
 ## Template Structure
 
