@@ -3,8 +3,9 @@
 package mocks
 
 import (
+	context "context"
+
 	domain "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/domain"
-	fasthttp "github.com/valyala/fasthttp"
 
 	mock "github.com/stretchr/testify/mock"
 )
@@ -15,21 +16,21 @@ type UserUseCase struct {
 }
 
 // Create provides a mock function with given fields: ctx, user
-func (_m *UserUseCase) Create(ctx *fasthttp.RequestCtx, user domain.User) (domain.User, error) {
+func (_m *UserUseCase) Create(ctx context.Context, user domain.User) (domain.User, error) {
 	ret := _m.Called(ctx, user)
 
 	var r0 domain.User
 	var r1 error
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, domain.User) (domain.User, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, domain.User) (domain.User, error)); ok {
 		return rf(ctx, user)
 	}
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, domain.User) domain.User); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, domain.User) domain.User); ok {
 		r0 = rf(ctx, user)
 	} else {
 		r0 = ret.Get(0).(domain.User)
 	}
 
-	if rf, ok := ret.Get(1).(func(*fasthttp.RequestCtx, domain.User) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, domain.User) error); ok {
 		r1 = rf(ctx, user)
 	} else {
 		r1 = ret.Error(1)
@@ -39,11 +40,11 @@ func (_m *UserUseCase) Create(ctx *fasthttp.RequestCtx, user domain.User) (domai
 }
 
 // Delete provides a mock function with given fields: ctx, user
-func (_m *UserUseCase) Delete(ctx *fasthttp.RequestCtx, user domain.User) error {
+func (_m *UserUseCase) Delete(ctx context.Context, user domain.User) error {
 	ret := _m.Called(ctx, user)
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, domain.User) error); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, domain.User) error); ok {
 		r0 = rf(ctx, user)
 	} else {
 		r0 = ret.Error(0)
@@ -53,15 +54,15 @@ func (_m *UserUseCase) Delete(ctx *fasthttp.RequestCtx, user domain.User) error 
 }
 
 // FindAll provides a mock function with given fields: ctx
-func (_m *UserUseCase) FindAll(ctx *fasthttp.RequestCtx) ([]domain.User, error) {
+func (_m *UserUseCase) FindAll(ctx context.Context) ([]domain.User, error) {
 	ret := _m.Called(ctx)
 
 	var r0 []domain.User
 	var r1 error
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx) ([]domain.User, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context) ([]domain.User, error)); ok {
 		return rf(ctx)
 	}
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx) []domain.User); ok {
+	if rf, ok := ret.Get(0).(func(context.Context) []domain.User); ok {
 		r0 = rf(ctx)
 	} else {
 		if ret.Get(0) != nil {
@@ -69,7 +70,7 @@ func (_m *UserUseCase) FindAll(ctx *fasthttp.RequestCtx) ([]domain.User, error) 
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(*fasthttp.RequestCtx) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context) error); ok {
 		r1 = rf(ctx)
 	} else {
 		r1 = ret.Error(1)
@@ -79,21 +80,21 @@ func (_m *UserUseCase) FindAll(ctx *fasthttp.RequestCtx) ([]domain.User, error) 
 }
 
 // FindByID provides a mock function with given fields: ctx, id
-func (_m *UserUseCase) FindByID(ctx *fasthttp.RequestCtx, id string) (domain.User, error) {
+func (_m *UserUseCase) FindByID(ctx context.Context, id string) (domain.User, error) {
 	ret := _m.Called(ctx, id)
 
 	var r0 domain.User
 	var r1 error
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, string) (domain.User, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, string) (domain.User, error)); ok {
 		return rf(ctx, id)
 	}
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, string) domain.User); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, string) domain.User); ok {
 		r0 = rf(ctx, id)
 	} else {
 		r0 = ret.Get(0).(domain.User)
 	}
 
-	if rf, ok := ret.Get(1).(func(*fasthttp.RequestCtx, string) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, string) error); ok {
 		r1 = rf(ctx, id)
 	} else {
 		r1 = ret.Error(1)
@@ -103,15 +104,15 @@ func (_m *UserUseCase) FindByID(ctx *fasthttp.RequestCtx, id string) (domain.Use
 }
 
 // GetMatchName provides a mock function with given fields: ctx, text
-func (_m *UserUseCase) GetMatchName(ctx *fasthttp.RequestCtx, text string) ([]domain.User, error) {
+func (_m *UserUseCase) GetMatchName(ctx context.Context, text string) ([]domain.User, error) {
 	ret := _m.Called(ctx, text)
 
 	var r0 []domain.User
 	var r1 error
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, string) ([]domain.User, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, string) ([]domain.User, error)); ok {
 		return rf(ctx, text)
 	}
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, string) []domain.User); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, string) []domain.User); ok {
 		r0 = rf(ctx, text)
 	} else {
 		if ret.Get(0) != nil {
@@ -119,7 +120,7 @@ func (_m *UserUseCase) GetMatchName(ctx *fasthttp.RequestCtx, text string) ([]do
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(*fasthttp.RequestCtx, string) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, string) error); ok {
 		r1 = rf(ctx, text)
 	} else {
 		r1 = ret.Error(1)
@@ -129,21 +130,21 @@ func (_m *UserUseCase) GetMatchName(ctx *fasthttp.RequestCtx, text string) ([]do
 }
 
 // UpdateByID provides a mock function with given fields: ctx, id, user
-func (_m *UserUseCase) UpdateByID(ctx *fasthttp.RequestCtx, id string, user domain.User) (domain.User, error) {
+func (_m *UserUseCase) UpdateByID(ctx context.Context, id string, user domain.User) (domain.User, error) {
 	ret := _m.Called(ctx, id, user)
 
 	var r0 domain.User
 	var r1 error
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, string, domain.User) (domain.User, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, string, domain.User) (domain.User, error)); ok {
 		return rf(ctx, id, user)
 	}
-	if rf, ok := ret.Get(0).(func(*fasthttp.RequestCtx, string, domain.User) domain.User); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, string, domain.User) domain.User); ok {
 		r0 = rf(ctx, id, user)
 	} else {
 		r0 = ret.Get(0).(domain.User)
 	}
 
-	if rf, ok := ret.Get(1).(func(*fasthttp.RequestCtx, string, domain.User) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, string, domain.User) error); ok {
 		r1 = rf(ctx, id, user)
 	} else {
 		r1 = ret.Error(1)

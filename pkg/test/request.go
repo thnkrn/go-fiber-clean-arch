@@ -11,7 +11,7 @@ import (
 type HTTPRequest struct {
 	Method      string
 	Path        string
-	JsonParam   string
+	Body        interface{}
 	Description string
 }
 

@@ -81,12 +81,12 @@ func (h *UserHandler) Update(c *fiber.Ctx) error {
 		return err
 	}
 
-	_, err := h.userUseCase.FindByID(c.Context(), paramsId)
+	foundedUser, err := h.userUseCase.FindByID(c.Context(), paramsId)
 	if err != nil {
 		return err
 	}
 
-	userData := domain.NewUser(uuid.MustParse(paramsId), request.Name, request.Email)
+	userData := domain.NewUser(foundedUser.ID, request.Name, request.Email)
 
 	user, err := h.userUseCase.UpdateByID(c.Context(), paramsId, userData)
 	if err != nil {
