@@ -5,7 +5,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 
-	middleware "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/api/middleware"
+	middleware "github.com/thnkrn/go-fiber-clean-arch/pkg/api/middleware"
 )
 
 type HTTPRequest struct {

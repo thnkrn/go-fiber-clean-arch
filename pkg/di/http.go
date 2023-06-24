@@ -3,8 +3,8 @@ package di
 import (
 	"github.com/google/wire"
 
-	api "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/api"
-	middleware "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/api/middleware"
+	api "github.com/thnkrn/go-fiber-clean-arch/pkg/api"
+	middleware "github.com/thnkrn/go-fiber-clean-arch/pkg/api/middleware"
 )
 
 var HTTPSet = wire.NewSet(

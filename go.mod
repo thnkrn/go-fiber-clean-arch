@@ -1,4 +1,4 @@
-module github.com/thnkrn/go-fiber-crud-clean-arch
+module github.com/thnkrn/go-fiber-clean-arch
 
 go 1.20
 

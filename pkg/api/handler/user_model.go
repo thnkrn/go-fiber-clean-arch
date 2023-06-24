@@ -2,7 +2,7 @@ package handler
 
 import (
 	"github.com/google/uuid"
-	"github.com/thnkrn/go-fiber-crud-clean-arch/pkg/domain"
+	"github.com/thnkrn/go-fiber-clean-arch/pkg/domain"
 )
 
 type UserRequest struct {

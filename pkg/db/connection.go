@@ -6,8 +6,8 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
-	config "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/config"
-	domain "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/domain"
+	config "github.com/thnkrn/go-fiber-clean-arch/pkg/config"
+	domain "github.com/thnkrn/go-fiber-clean-arch/pkg/domain"
 )
 
 func ConnectDatabase(cfg config.Config) (*gorm.DB, error) {

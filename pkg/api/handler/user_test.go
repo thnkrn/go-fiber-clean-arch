@@ -12,10 +12,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	handler "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/api/handler"
-	domain "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/domain"
-	musecase "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/mocks/usecase"
-	test "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/test"
+	handler "github.com/thnkrn/go-fiber-clean-arch/pkg/api/handler"
+	domain "github.com/thnkrn/go-fiber-clean-arch/pkg/domain"
+	musecase "github.com/thnkrn/go-fiber-clean-arch/pkg/mocks/usecase"
+	test "github.com/thnkrn/go-fiber-clean-arch/pkg/test"
 )
 
 type userDependencies struct {

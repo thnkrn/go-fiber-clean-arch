@@ -8,8 +8,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/jinzhu/copier"
 
-	domain "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/domain"
-	interfaces "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/repository/interfaces"
+	domain "github.com/thnkrn/go-fiber-clean-arch/pkg/domain"
+	interfaces "github.com/thnkrn/go-fiber-clean-arch/pkg/repository/interfaces"
 )
 
 type User struct {

@@ -3,7 +3,7 @@ package interfaces
 import (
 	"context"
 
-	domain "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/domain"
+	domain "github.com/thnkrn/go-fiber-clean-arch/pkg/domain"
 )
 
 type UserRepository interface {

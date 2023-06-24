@@ -4,10 +4,10 @@ import (
 	"context"
 	"errors"
 
-	domain "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/domain"
-	iRepository "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/repository/interfaces"
-	eUsecase "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/usecase/error"
-	iUsecase "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/usecase/interfaces"
+	domain "github.com/thnkrn/go-fiber-clean-arch/pkg/domain"
+	iRepository "github.com/thnkrn/go-fiber-clean-arch/pkg/repository/interfaces"
+	eUsecase "github.com/thnkrn/go-fiber-clean-arch/pkg/usecase/error"
+	iUsecase "github.com/thnkrn/go-fiber-clean-arch/pkg/usecase/interfaces"
 )
 
 type userUseCase struct {

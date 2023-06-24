@@ -5,8 +5,8 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 
-	handlerError "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/api/handler/error"
-	usecaseError "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/usecase/error"
+	handlerError "github.com/thnkrn/go-fiber-clean-arch/pkg/api/handler/error"
+	usecaseError "github.com/thnkrn/go-fiber-clean-arch/pkg/usecase/error"
 )
 
 type ErrorHandler struct {

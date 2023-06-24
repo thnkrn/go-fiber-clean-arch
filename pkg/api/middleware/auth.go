@@ -9,7 +9,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v5"
 
-	handlerError "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/api/handler/error"
+	handlerError "github.com/thnkrn/go-fiber-clean-arch/pkg/api/handler/error"
 )
 
 var ErrToken = errors.New("not found token")

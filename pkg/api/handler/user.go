@@ -6,8 +6,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 
-	domain "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/domain"
-	iUsecase "github.com/thnkrn/go-fiber-crud-clean-arch/pkg/usecase/interfaces"
+	domain "github.com/thnkrn/go-fiber-clean-arch/pkg/domain"
+	iUsecase "github.com/thnkrn/go-fiber-clean-arch/pkg/usecase/interfaces"
 )
 
 type UserHandler struct {

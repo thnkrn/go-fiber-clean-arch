@@ -1,4 +1,4 @@
-# go-fiber-crud-clean-arch
+# go-fiber-clean-arch
 
 Golang REST API service using Fiber framework and GORM with PostgresSQL database by applying clean architecture and dependency injection by Wire
 
@@ -28,7 +28,7 @@ Golang REST API service using Fiber framework and GORM with PostgresSQL database
 * Using mockery to generate mocks for usecase and repository interfaces
 * Test coverage for all handler and usecase is 100%
 
-## Using `go-fiber-crud-clean-arch` project
+## Using `go-fiber-clean-arch` project
 
 ### Prerequisite
 
@@ -49,7 +49,7 @@ Golang REST API service using Fiber framework and GORM with PostgresSQL database
 
 ### Run application
 
-To use `go-fiber-crud-clean-arch` project, follow these steps:
+To use `go-fiber-clean-arch` project, follow these steps:
 
 ```bash
 # Install dependencies
