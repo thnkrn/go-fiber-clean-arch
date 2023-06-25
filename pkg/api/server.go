@@ -2,7 +2,6 @@ package api
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/bytedance/sonic"
@@ -13,6 +12,7 @@ import (
 	handler "github.com/thnkrn/go-fiber-clean-arch/pkg/api/handler"
 	middleware "github.com/thnkrn/go-fiber-clean-arch/pkg/api/middleware"
 	config "github.com/thnkrn/go-fiber-clean-arch/pkg/config"
+	log "github.com/thnkrn/go-fiber-clean-arch/pkg/driver/log"
 )
 
 type Middlewares struct {
@@ -28,7 +28,7 @@ type ServerHTTP struct {
 	app *fiber.App
 }
 
-func NewServerHTTP(middlewares *Middlewares, handlers Handlers, cfg config.Config) *ServerHTTP {
+func NewServerHTTP(middlewares *Middlewares, handlers Handlers, log log.Logger, cfg config.Config) *ServerHTTP {
 	app := fiber.New(
 		fiber.Config{
 			// NOTE: enable SO_REUSEPORT,
@@ -41,7 +41,7 @@ func NewServerHTTP(middlewares *Middlewares, handlers Handlers, cfg config.Confi
 			ErrorHandler: middlewares.ErrorHandler.FiberErrorHandler(),
 		})
 
-	log.Printf((fmt.Sprintf("Server is started with PID: %v and PPID: %v", os.Getpid(), os.Getppid())))
+	log.Info((fmt.Sprintf("Server is started with PID: %v and PPID: %v", os.Getpid(), os.Getppid())))
 
 	// NOTE: Enable log tracing from Fiber, https://docs.gofiber.io/api/middleware/logger
 	if cfg.Tracing {

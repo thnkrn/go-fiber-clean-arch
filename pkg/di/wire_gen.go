@@ -11,7 +11,9 @@ import (
 	"github.com/thnkrn/go-fiber-clean-arch/pkg/api/handler"
 	"github.com/thnkrn/go-fiber-clean-arch/pkg/api/middleware"
 	"github.com/thnkrn/go-fiber-clean-arch/pkg/config"
-	"github.com/thnkrn/go-fiber-clean-arch/pkg/db"
+	"github.com/thnkrn/go-fiber-clean-arch/pkg/driver/db"
+	"github.com/thnkrn/go-fiber-clean-arch/pkg/driver/log/adapter"
+	config2 "github.com/thnkrn/go-fiber-clean-arch/pkg/driver/log/config"
 	"github.com/thnkrn/go-fiber-clean-arch/pkg/repository"
 	"github.com/thnkrn/go-fiber-clean-arch/pkg/usecase"
 )
@@ -35,6 +37,11 @@ func InitializeAPI(cfg config.Config) (*api.ServerHTTP, error) {
 	handlers := api.Handlers{
 		UserHandler: userHandler,
 	}
-	serverHTTP := api.NewServerHTTP(middlewares, handlers, cfg)
+	logger, err := config2.ProvidZapLogger()
+	if err != nil {
+		return nil, err
+	}
+	zapImplement := adapter.ProvideLogger(logger)
+	serverHTTP := api.NewServerHTTP(middlewares, handlers, zapImplement, cfg)
 	return serverHTTP, nil
 }

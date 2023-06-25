@@ -1,6 +1,6 @@
 # go-fiber-clean-arch
 
-Golang REST API service using Fiber framework and GORM with PostgresSQL database by applying clean architecture and dependency injection by Wire
+Golang REST API service using Fiber framework and GORM with PostgresSQL database by applying clean architecture and dependency injection by Wire.
 
 ## Template Structure
 
@@ -12,6 +12,7 @@ Golang REST API service using Fiber framework and GORM with PostgresSQL database
 * [Viper](https://github.com/spf13/viper) is a complete configuration solution for Go applications including 12-Factor apps. It is designed to work within an application, and can handle all types of configuration needs and formats.
 * [mockery](https://github.com/vektra/mockery) provides the ability to easily generate mocks for Golang interfaces using the stretchr/testify/mock package. It removes the boilerplate coding required to use mocks.
 * [UUID](https://github.com/google/uuid) generates and inspects UUIDs based on RFC 4122 and DCE 1.1: Authentication and Security Services.
+* [zap](https://github.com/uber-go/zap) is a Blazing fast, structured, leveled logging in Go.
 
 ## Feature
 
@@ -25,6 +26,7 @@ Golang REST API service using Fiber framework and GORM with PostgresSQL database
 * Creating a persistent model at repository level to avoid the inhabit access from outsider
 * Creating a response model at handler level to avoid the application model connect to the outsider
 * Using Goolgle UUID for primary key in database table
+* Using Zap as a logger for application
 * Containerize with application and Postgres database with Docker
 * Using mockery to generate mocks for usecase and repository interfaces
 * Test coverage for all handler and usecase is 100%
