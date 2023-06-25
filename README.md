@@ -146,3 +146,7 @@ Here below is how folder map to layer and component in clean architecture
 * repository -> Repository
 * api -> Handler
 * driver -> remote call
+
+## Trade-offs
+
+* I'm prefer ORM library to provides an abstraction layer between the Go code and the database over the raw SQL. GORM makes less boilerplate code and fewer manual SQL queries. GORM provides official support for multiple database engines, and a simple CRUD interface for querying and manipulating database records. Furthermore, if the basic function from GORM is not enough, GORM still support query raw SQL too. On the other hand, GORM usually execute SQL queries under the hood, they can only hope to match the performance of an equivalent optimized SQL query; in practice, though, ORMs are often slower.
