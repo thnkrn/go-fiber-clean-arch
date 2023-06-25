@@ -87,6 +87,7 @@ func (h *UserHandler) Update(c *fiber.Ctx) error {
 	}
 
 	userData := domain.NewUser(foundedUser.ID, request.Name, request.Email)
+	userData.SetVersion(foundedUser.Versioning)
 
 	user, err := h.userUseCase.UpdateByID(c.Context(), paramsId, userData)
 	if err != nil {
