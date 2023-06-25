@@ -92,7 +92,7 @@ mockery                        Generate mock file
 help                           Display this help screen
 docker-build                   Build docker image with default setting and platform
 docker-run                     Run docker image
-docker-compose-run                   Run docker image with postgres database in the contianer
+docker-compose-run             Run docker image with postgres database in the contianer
 ```
 
 ## Available Endpoint
