@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  app:
+    environment:
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - RECOVER=${RECOVER}
+      - TRACING=${TRACING}
+      - PREFORK=${PREFORK}
+    tty: true
+    build: .
+    ports:
+      - 8000:8080
+    restart: on-failure
+    depends_on:
+      - postgresdb
+    networks:
+      - app
+
+  postgresdb:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge

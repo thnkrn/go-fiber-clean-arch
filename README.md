@@ -25,6 +25,7 @@ Golang REST API service using Fiber framework and GORM with PostgresSQL database
 * Creating a persistent model at repository level to avoid the inhabit access from outsider
 * Creating a response model at handler level to avoid the application model connect to the outsider
 * Using Goolgle UUID for primary key in database table
+* Containerize with application and Postgres database with Docker
 * Using mockery to generate mocks for usecase and repository interfaces
 * Test coverage for all handler and usecase is 100%
 
@@ -63,6 +64,17 @@ make wire
 make run
 ```
 
+### Run application with database via Docker container
+
+To use `go-fiber-clean-arch` project, follow these steps:
+
+```bash
+* Update .env file for `DB_HOST` key to match with database service name in docker compse
+
+# Build and run application with Docker compose
+make docker-compose-run
+```
+
 Additional commands:
 
 ```bash
@@ -76,6 +88,9 @@ deps-cleancache                Clear cache in Go module
 wire                           Generate wire_gen.go
 mockery                        Generate mock file
 help                           Display this help screen
+docker-build                   Build docker image with default setting and platform
+docker-run                     Run docker image
+docker-compose-run                   Run docker image with postgres database in the contianer
 ```
 
 ## Available Endpoint
